@@ -1,0 +1,95 @@
+\subsection*{1.}
+For every $m$ there exist a unique $n$ and $j$ so that $m=\frac{n(n-1)}{2}+j$. where $j\in\{1,\ldots,n\}$. Indeed for a given $m$, we will have $m \in[\frac{n(n-1)}{2}+1, \frac{(n+1)n}{2})$. For different $n$ we get disjoint intervals, so $n$ and $j$ are uniquely determined.
+
+\begin{gather*}
+    \pr{\abs{Y_m}>\epsilon}=\pr{Y_m>\epsilon}=\pr{X_{n,j}>\epsilon}=\pr{\ind{[\frac{j-1}{n},\frac{j}{n}]}}=\frac{1}{n}
+\end{gather*}
+So the series of probabilities is $1, \frac{1}{2}, \frac{1}{2}, \frac{1}{3}, \frac{1}{3}, \frac{1}{3}\,\ldots \to 0$
+
+The definition of almost surely convergence is (for every $\epsilon$) $$1=\pr{\{\omega\in[0,1]:Y_m(\omega)\to0\}}=1\Longleftrightarrow0=\pr{\limsup_m\{\omega \in [0,1]: \abs{Y_m-0}>\epsilon\}}.$$ If we define $A_m=\{\omega \in [0,1]: \abs{Y_m}>\epsilon\}$, then we have the series of sets $[0,1], [0,\frac{1}{2}], [\frac{1}{2},1], [0,\frac{1}{3}], [\frac{1}{3},\frac{2}{3}]\ldots$. By the definition limsup we have $\limsup_m A_m=\cap_{m=1}^{\infty} \cup_{m=n}^{\infty}A_n=\cup_{m=1}[0,1]=[0,1]$ because even after an arbitrary large $m$ we will have a bigger $n$ where $\sum_j\ind{[\frac{j-1}{n}, \frac{j}{n}]}=\ind{[0,1]}$, but we have $\pr{\limsup_m A_m}=\pr{[0,1]}=1$, so the series do not converge almost surely to $0$.
+
+\subsection*{2.}
+$Z=X^4$ means $X=\pm Z^\frac{1}{4}$
+\begin{gather*}
+    \pr{Z \le z}=\pr{\abs{X} \le z^\frac{1}{4}}=\pr{X \in [-z^\frac{1}{4},z^\frac{1}{4}]}=F_{X}(z^\frac{1}{4})-F_{X}(-z^\frac{1}{4})
+\end{gather*}
+and hence
+\begin{gather*}
+    p_{Z}(z)=\frac{1}{4}(p_{X}(z^\frac{1}{4})+p_{X}(-z^\frac{1}{4}))z^\frac{-3}{4}
+\end{gather*}
+
+\subsection*{3.}
+Let $X_i$ be the i. round's result. 
+
+a. 
+\begin{gather*}
+    \mathds{E}(\sum_{i=1}^{361} X_i)= \sum_{i=1}^{361} \mathds{E}(X_i) =\mathds{E}(X_1)\cdot361
+\end{gather*}
+\begin{gather*}
+    \mathds{E}(X_1)=1\cdot\frac{18}{38}-1\cdot\frac{18}{38}-1\cdot\frac{2}{38}=\frac{-1}{19}
+\end{gather*}
+So all in all, the answer is $-\frac{361}{19}=-19$
+
+b. 
+
+$Y=\sum_{i=1}^{361} X_i$
+
+Our goal is to use the CLT, so we are doing transformations in order to be able to use it.
+
+\begin{gather*}
+    \pr{Y>0} = 1- \pr{Y\le 0} = 1- \pr{\frac{Y-n\cdot \mu}{\sqrt{n}\sigma} \le \frac{-n\cdot \mu}{\sqrt{n}\sigma} } = 1- \pr{\frac{Y-361\cdot \frac{-1}{19}}{\sqrt{361}\sqrt{\frac{360}{361}}} \le \frac{-361\cdot \frac{-1}{19}}{\sqrt{361}\sqrt{\frac{360}{361}}} } = \\
+    = 1 - \pr{\frac{Y+19}{19\cdot\sqrt{\frac{360}{361}}}\le \frac{19}{\sqrt{360}}} \approx 1- \Phi\left(\frac{19}{\sqrt{360}}\right)
+\end{gather*}
+In the previous part we calculated $\mu$, now we just need to calculate $\sigma^2$
+\begin{gather*}
+    \sigma^2=\mathds{E}(X^2)- \mathds{E}(X)^2 = 1- \left(-\frac{1}{19}\right)^2= \frac{360}{361}
+\end{gather*}
+
+\subsection*{4.}
+$F_T(x; X_1, X_2, ... X_T)=F_T(x)$
+
+We can see form CLT that the following holds.
+\begin{gather*}
+    \lim_{T\to \infty} \sqrt{T}(F_T(x)-F(x))= \lim_{T\to \infty} \sqrt{T}\left(\frac{1}{T}\sum_x \mathds{1}_{X_t\le x} - F(x)\right) = N(0,\sigma^2)
+\end{gather*}
+
+We have already seen on lecture that $\mathds{E}(\mathds{1}_{X_t\le x})=F(x)$. 
+
+So, it is easy to see that $\sigma^2= V(\mathds{1}_{X_t\le x})= \mathds{E}(\mathds{1}_{X_t\le x}^2)- \mathds{E}^2(\mathds{1}_{X_t\le x})=F(x)(1-F(x))$
+
+As a result the limit is $N(0, F(x)(1-F(x)))$
+
+\subsection*{5.}
+%\textcolor{blue}{Irene's version}
+Let $\Phi$ denote the c.d.f of the standard normal distribution and $\varphi$ its p.d.f.
+\begin{gather*}
+    P=\E{(K-X_t)^+}=\int_{\R}(K-t)^+ f_{X_t}(t)\dt=\int_{-\infty}^K (K-t)f_{X_t}(t)\dt=K F_{X_t}(K)-\int_{-\infty}^K tf_{X_t}(t)\dt=\\=K\Phi(\frac{K-\mu}{\sigma})-\mu\Phi(\frac{K-\mu}{\sigma})+\sigma\varphi(\frac{K-\mu}{\sigma})=(K-\mu)\Phi(\frac{K-\mu}{\sigma})+\sigma\varphi(\frac{K-\mu}{\sigma})
+\end{gather*}
+Where we have used that $X_t\sim \gauss{\mu}{\sigma^2}$, hence $\frac{X_t-\mu}{\sigma}\sim \gauss{0}{1}$, and the change of variables $z=\frac{t-\mu}{\sigma}$ and therefore $t=z\sigma+\mu$. Consequently:
+\begin{gather*}
+    \int_{-\infty}^K tf_{X_t}(t)\dt=\int_{-\infty}^\frac{K-\mu}{\sigma} (z\sigma+\mu)\frac{1}{\sqrt{2\pi}}e^\frac{-z^2}{2}dz=\mu\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\frac{K-\mu}{\sigma}} e^\frac{-z^2}{2}dz+\frac{\sigma}{\sqrt{2\pi}}\int_{-\infty}^{\frac{K-\mu}{\sigma}} ze^\frac{-z^2}{2}dz=\\
+    =\mu\Phi(\frac{K-\mu}{\sigma})+\left[ \frac{-\sigma}{\sqrt{2\pi}} \exp\left(-\frac{z^2}{2}\right)\right]_{-\infty}^\frac{K-\mu}{\sigma}=\mu\Phi(\frac{K-\mu}{\sigma})-\sigma\varphi(\frac{K-\mu}{\sigma})
+\end{gather*}
+
+%\textcolor{blue}{Ben: This might be competely wrong, I just tried to repproduce what we did at Rolex}
+%$X_t\sim \gauss{\mu}{\sigma^2}$ 
+%\begin{gather*}
+    %\E{(K-X_t)^+}=\int_{\R}(K-t)^+ f_{X_t}(t)\dt=\int_{-\infty}^K (K-t)f_{X_t}(t)\dt=K F_{X_t}(K)-\int_{-\infty}^K tf_{X_t}(t)\dt=
+%\end{gather*}
+
+%\begin{gather*}
+    %\int_{-\infty}^K -\frac{(t-\mu)}{\sqrt{2\pi}\sigma^2 \sigma}\exp\left(-\frac{(t-\mu)^2}{2\sigma^2}\right)\dt = - \int_{-\infty}^K  \frac{t}{\sigma}\frac{1}{\sqrt{2 \pi}\sigma^2}\exp\left(-\frac{(t-y)^2}{2\sigma^2}\right) \dt + \frac{\mu}{\sigma}\int_{-\infty}^K\frac{1}{\sqrt{2 \pi}\sigma^2}\exp\left(-\frac{(t-y)^2}{2\sigma^2}\right)\dt  \\
+    %\left[ \frac{1}{\sqrt{2\pi  \sigma^2}} \exp\left(-\frac{(t-\mu)^2}{2 \sigma^2}\right)\right]_{-\infty}^K = -\frac{1}{\sigma} \int_{-\infty}^K t f_{X_t}(t)\dt + \frac{\mu}{\sigma} F_{X_t}(K) \\
+    %\int_{-\infty}^K t f_{X_t}(t)\dt = \sigma \left(\frac{\mu}{\sigma}F_{X_t}(K)-f_{X_t}(K)\right)
+%\end{gather*}
+%Finally
+%\begin{gather*}
+    %\E{(K-X_t)^+}=KF_{X_t}(K)-\mu F_{X_t}(K)+\sigma f_{X_t}(K)= KF_{Z}(\frac{K-\mu}{\sigma})-\mu F_{X_t}(K)+\sigma f_{Z}(\frac{K-\mu}{\sigma})
+%\end{gather*}
+\newpage
+\subsection*{Simulations}
+For the simulation, first we chose different values for $t$, and $K$ the other parameters were $X_t\sim \gauss{0}{1}$, $N=1$. We performed $100$ runs in every case. 
+\begin{center}
+    \includegraphics[width=175mm,scale=0.7]{images/ps2_plots.png}
+\end{center}
+On the plots the red simulations are the defaulted ones and the greens are the survivors. We can observe that even with a small time window only a small portion of simulations survive. Source code for the simulations can be found at https://github.com/hbenedek/epfl-stochastic.

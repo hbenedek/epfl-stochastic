@@ -1,0 +1,198 @@
+\subsection*{1.}
+Left side
+$$\mathds{P}(A \cap B| C)=\frac{\mathds{P}(A\cap B \cap C)}{\mathds{P}(C)}$$
+\\
+Right side
+$$\mathds{P}(A| B\cap C)\mathds{P}(B|C)=\frac{\mathds{P}(A \cap B \cap C)}{\mathds{P}(B \cap C)}\cdot \frac{\mathds{P}(B \cap C)}{\mathds{P}(C)}=\frac{\mathds{P}(A\cap B
+ \cap C)}{\mathds{P}(C)}$$
+
+\subsection*{2.}
+a.
+    $$\mathds{P}(B=0|s=L)=\frac{\mathds{P}(s=L|B=0)\mathds{P}(B=0)}{\mathds{P}(s=L)} = \frac{\frac{\pi}{2}}{\frac{1}{2}} = \pi$$
+
+    $$\mathds{P}(B=1|s=H)=\frac{\mathds{P}(s=H|B=1)\mathds{P}(B=1)}{\mathds{P}(s=H)} = \frac{\frac{\pi}{2}}{\frac{1}{2}} = \pi$$
+    
+    As $B=0|s=L/H$ and $B=1|s=L/H$ are complementary events. 
+    
+    $$\mathds{P}(B=1|s=L)=1-\mathds{P}(B=0|s=L)=1-\pi$$
+    
+    $$\mathds{P}(B=0|s=H)=1-\mathds{P}(B=1|s=H)=1-\pi$$
+\\    
+b.
+    %\textcolor{blue}{I am still not sure about this one, I 'corrected' the first one but someone check if I it's alright}
+    %\begin{gather*}
+    %\mathds{P}(s=m=H|B=0)=\frac{\mathds{P}(B=0|s=m=H)\mathds{P}(s=m=H)}{\mathds{P}(B=0)} = \frac{\pi \rho}{2}
+    %\end{gather*}
+    %Similarly we can compute the other cases when $B\in\{0,1\}$ and $m\in\{L,H\}$.
+    %$$\mathds{P}(B=1|s=L)=\frac{\mathds{P}(s=L|B=1)\mathds{P}(B=1)}{\mathds{P}(s=L)} = \frac{\frac{\mathds{P}(s=L|B=1)}{2}}{\frac{1}{2}} = \mathds{P}(s=L|B=1) = 1-\mathds{P}(s=H|B=1) = 1-\pi$$
+    
+    \begin{gather*}
+    \mathds{P}(s=m=H|B=0)=\frac{\mathds{P}(B=0|s=m=H)\mathds{P}(s=m=H)}{\mathds{P}(B=0)} = (1-\pi)\rho
+    \end{gather*}
+    Where we have used that
+    $$\mathds{P}(s=m=H)=\mathds{P}(s=m)\mathds{P}(m=H)=\frac{\rho}{2}$$
+    $$\mathds{P}(B=0)=\frac{1}{2}$$
+    $$\mathds{P}(B=0|s=m=H)=\mathds{P}(B=0|s=H)=1-\pi$$
+    Analogously
+    \begin{gather*}
+    \mathds{P}(s=m=H|B=1)=\frac{\mathds{P}(B=1|s=m=H)\mathds{P}(s=m=H)}{\mathds{P}(B=1)} = \pi\rho
+    \end{gather*}
+    \begin{gather*}
+    \mathds{P}(s=m=L|B=0)=\frac{\mathds{P}(B=0|s=m=L)\mathds{P}(s=m=L)}{\mathds{P}(B=0)} = \pi\rho
+    \end{gather*}
+        \begin{gather*}
+    \mathds{P}(s=m=L|B=1)=\frac{\mathds{P}(B=1|s=m=L)\mathds{P}(s=m=L)}{\mathds{P}(B=1)} = (1-\pi)\rho
+    \end{gather*}
+    Therefore the final result is
+    \begin{gather*}
+        \mathds{P}(s=m|B=i)=\sum_{i\in\{0,1\}}\mathbb{1}_{\{B=i\}}
+        \sum_{j\in\{H,L\}}\cpr{s=m=j}{B=i}=\mathbb{1}_{\{B=0\}}[(1-\pi)\rho+\pi\rho]+\mathbb{1}_{\{B=1\}}[(1-\pi)\rho+\pi\rho]=\rho
+    \end{gather*}
+
+\subsection*{3.}
+
+\begin{itemize}
+    \item Since the elements of $\mathcal{F}_2$ are pairwise disjoint and their union is $\Omega$, the $\sigma$-algebra is 'atomic' which means we get the generated $\sigma$-algbera by constructing the unions of our atoms. We have $n$ atoms, so our $\sigma$-algebra contains $2^n$ elements.
+    \item The random variable $X: \Omega \to \mathbb{R}$ is $\mathcal{F}_2$ measurable. Its images are the integers from $1$ to $n$ and $X^{-1}(k)=\{3k-2, 3k-1, 3k\}$ if $k \in\{1,\ldots ,n\}$. If we take any $B$ Borel set and $Z=\{a: a\in \mathbb{Z}, a\in B\}$ then the preimage of $B$ will be the preimage of $Z$, which is just the union of the preimages of the elements of $Z$.
+    \item $\displaystyle \mathbb{P}(X\geq 7 | X\geq 4)=\frac{\mathbb{P}(X\geq 7)}{\mathbb{P}(X\geq 10)}=\frac{\mathbb{P}(3n \geq k \geq 19)}{\mathbb{P}(3n\geq k\geq 10)}=\frac{(3n-18)/3n}{(3n-9)/3n}=\frac{n-6}{n-4}$
+    \item No it is not, the preimage of $X^{-1}(1)=\{2, 3, 4\} \notin \mathcal{F}_2$
+    \item $\displaystyle \mathbb{P}(X\geq 10 | X\geq 3)=\frac{\mathbb{P}(X\geq 10)}{\mathbb{P}(X\geq 3)}=\frac{\mathbb{P}(3n \geq k \geq 29)}{\mathbb{P}(3n\geq k\geq 8)}=\frac{(3n-28)/3n}{(3n-7)/3n}=\frac{3n-28}{3n-7}$
+    
+\end{itemize}
+
+\subsection*{4.}
+\begin{gather*}
+    \mathbb{P}(S>50|S\geq 10)=\frac{\frac{1-\mathbb{P}(S=50)}{2}}{1-\sum_{j=0}^{9}\mathbb{P}(S=j)}
+\end{gather*}
+\begin{gather*}
+        \mathbb{P}(C=\text{unfair})|S=35)=\frac{\mathbb{P}(S=35|C=\text{unfair})\mathbb{P}(C=\text{unfair})}{\mathbb{P}(S=35)}=\\ \frac{\mathbb{P}(S=35|C=\text{unfair})\mathbb{P}(C=\text{unfair})}{\cpr{S=35}{C=\text{unfair}}\pr{C=\text{unfair}}+\cpr{S=35}{C=\text{fair}}\pr{C=\text{fair}}}= \\
+        \frac{\binom{100}{35}\left(0.9\right)^{35}\left(0.1\right)^{65}\cdot 0.8}{\binom{100}{35}\left(0.9\right)^{35}\left(0.1\right)^{65}\cdot 0.8+\binom{100}{35}\left(0.5\right)^{100}\cdot 0.8 \cdot 0.2}
+\end{gather*}
+
+\subsection*{5.}
+\begin{gather*}
+Cov(aX_1+bY_1; cX_2+dY_2) = \mathds{E}((aX_1+bY_1-\mathds{E}(aX_1+bY_1))(cX_2+dY_2-\mathds{E}(cX_2+dY_2)))= \\
+= \mathds{E}((aX_1+bY_1)(cX_2+dY_2)+\mathds{E}(aX_1+bY_1)\mathds{E}(cX_2+dY_2)
+-(aX_1+bY_1)(\mathds{E}(cX_2+dY_2))-(cX_2+dY_2)(\mathds{E}(aX_1+bY_1)))=\\
+= \mathds{E}(aX_1 c X_2 + b Y_2 c X_2+ aX_1 d Y_2 +b Y_1 d Y_2 +
+ac\mathds{E}(X_1)\mathds{E}(X_2)+ 
+ad \mathds{E}(X_1)\mathds{E}(Y_2)+
+bc \mathds{E}(Y_1)\mathds{E}(X_2)+
+bd \mathds{E}(Y_1)\mathds{E}(Y_2)
+\\
+- ac X_1 \mathds{E}(X_2)-ad X_1 \mathds{E}(Y_2)-bc Y_1 \mathds{E}(X_2)-bd Y_1 \mathds{E}(Y_2)
+- ac X_2 \mathds{E}(X_1)-ad Y_2 \mathds{E}(X_1)-bc X_2 \mathds{E}(Y_1)-bd Y_2 \mathds{E}(Y_1))=\\
+=\textcolor{red}{\mathds{E}(aX_1 c X_2) }
++ \textcolor{blue}{\mathds{E}(b Y_2 c X_2)}
++\textcolor{green}{\mathds{E}( aX_1 d Y_2) }
++\textcolor{purple}{\mathds{E}(b Y_1 d Y_2) }
++ \textcolor{red}{\mathds{E}(ac\mathds{E}(X_1)\mathds{E}(X_2))} + 
+\textcolor{green}{\mathds{E}(ad \mathds{E}(X_1)\mathds{E}(Y_2))}+
+\textcolor{blue}{\mathds{E}(bc \mathds{E}(Y_1)\mathds{E}(X_2))}\\+
+\textcolor{purple}{\mathds{E}(bd \mathds{E}(Y_1)\mathds{E}(Y_2))}
+- \textcolor{red}{\mathds{E}(ac X_1 \mathds{E}(X_2))}
+-\textcolor{green}{\mathds{E}(ad X_1 \mathds{E}(Y_2))}
+-\textcolor{blue}{\mathds{E}(bc Y_1 \mathds{E}(X_2))}
+-\textcolor{purple}{\mathds{E}(bd Y_1 \mathds{E}(Y_2))}
+-\textcolor{red}{\mathds{E}( ac X_2 \mathds{E}(X_1))}\\
+-\textcolor{green}{\mathds{E}(ad Y_2 \mathds{E}(X_1))}
+-\textcolor{blue}{\mathds{E}(bc X_2 \mathds{E}(Y_1))}
+-\textcolor{purple}{\mathds{E}(bd Y_2 \mathds{E}(Y_1))}=\\
+=\textcolor{red}{ac Cov(X_1;X_2)} + \textcolor{blue}{bc Cov(X_2;Y_1)} +
+\textcolor{green}{ ad Cov(X_1,Y_2)}+
+\textcolor{purple}{ bd Cov(Y_1;Y_2)}
+\end{gather*}
+
+\begin{gather*}
+    Var(aX+bY)=Cov(aX+bY;aX+bY)=\\
+    a^2 Cov(X;X)+ab Cov(X;Y)+ab Cov(X;Y)+b^2 Cov(Y;Y)=\\
+    a^2 Var(X)+ 2ab Cov(X;Y)+ b^2 Var(Y)
+\end{gather*}
+
+
+\subsection*{6.}
+
+\begin{align*} 
+M_X(t)=\mathbb{E}[e^tX]=\sum_{n=0}^{\infty}\mathbb{P}(X=n)e^{tn}=\sum_{n=0}^{\infty}e^{-\lambda}\frac{\lambda^n}{n!}e^{tn}=e^{-\lambda}\sum_{n=0}^{\infty}\frac{(\lambda e^t)^n}{n!}=e^{-\lambda}e^{(\lambda e^t)}=e^{\lambda(e^t-1)}
+\end{align*}
+\begin{align*}
+    \mathbb{E}(X)=M_X'(0)=\frac{d}{dt}e^{\lambda(e^t-1)}\bigg\rvert_{t=0}=e^{\lambda(e^t-1)}\frac{d}{dt}[\lambda (e^{t}-1)]\bigg\rvert_{t=0}= e^{(\lambda e^t-1)}\lambda e^t \bigg\rvert_{t=0}= \lambda
+\end{align*}
+
+\begin{align*}
+    M_X''(0)=\frac{d}{dt}[e^{(\lambda e^t-1)}\lambda e^t] \bigg\rvert_{t=0}=\lambda(\lambda e^t+1)e^{\lambda(e^t-1)+t}\bigg\rvert_{t=0}= \lambda (\lambda+1)
+\end{align*}
+\begin{align*}
+    Var(X)=\mathbb{E}X^2-\mathbb{E}^2X=M_X''(0)-(M_X'(0))^2=\lambda(\lambda+1)-\lambda^2=\lambda
+\end{align*}
+
+\subsection*{7.}
+ \begin{align*}
+ M(s)=\mathbb{E}[e^{sX}]=\int_{\mathbb{R}}e^{sx} f_X(x)\dx = \frac{1}{\sqrt{2\pi}\sigma}\int_{\mathbb{R}}e^{sx} e^{-\frac{1}{2}\frac{(x-\mu)^2}{\sigma^2}}\dx =
+ \end{align*}
+ 
+ We use the identity: $2sx\sigma^2-(x-\mu)^2=(\mu+\sigma^2 s)-\mu^2-(x-\mu-\sigma^2s)^2$
+ 
+ \begin{gather*}
+     =\frac{1}{\sqrt{2\pi}\sigma}\int_{\mathbb{R}} \exp{\left(\frac{2sx\sigma^2(x-\mu)^2}{2\sigma^2}\right)}\dx=\frac{1}{\sqrt{2\pi}\sigma}\int_{\mathbb{R}} \exp{\left(\frac{(\mu+\sigma^2 s)-\mu^2-(x-\mu-\sigma^2s)^2}{2\sigma^2}\right)}\dx = \\
+     e^{\frac{\sigma^2s^2}{2}}e^{s\mu}\frac{1}{\sqrt{2\pi}\sigma}\int_{\mathbb{R}} \exp{\frac{(x-\mu-\sigma^2s)^2}{2\sigma^2}}\dx = \exp{(\frac{\sigma^2s^2}{2})}\exp{(s\mu)}
+ \end{gather*}
+ 
+ Where we used the fact that the integral of the density function of the random variable $Y \sim\mathcal{N}(\mu+\sigma^2s, \sigma^2)$ is equal to one.
+ 
+ \begin{gather*}
+     \mathbb{E}[X]=M_X'(0)=\frac{d}{ds} \exp{(\frac{\sigma^2s^2}{2})}\exp{(s\mu)} \bigg\rvert_{s=0}=
+     \exp\left(\frac{\sigma^2 s^2}{2}+s\mu\right)\frac{d}{ds}\left[\frac{\sigma^2 s^2}{2}+s\mu\right]\bigg\rvert_{s=0}= \\ \exp\left(\frac{\sigma^2 s^2}{2}+s\mu\right) \left(s\sigma^2+\mu\right)\bigg\rvert_{s=0} = \mu
+ \end{gather*}
+ 
+ \begin{gather*}
+     M_X''(0)= \frac{d}{ds} \left[\exp\left(\frac{\sigma^2 s^2}{2}+s\mu\right) \left(s\sigma^2+\mu\right) \right]\bigg\rvert_{s=0} = \\ (\sigma^4s^2+2\mu\sigma^2s+\sigma^2+\mu^2)\exp\left(\frac{\sigma^2 s^2}{2}+s\mu\right) \bigg\rvert_{s=0} = \sigma^2 + \mu^2
+ \end{gather*}
+ 
+ \begin{gather*}
+     Var(X)=\mathbb{E}X^2-\mathbb{E}^2X=M_X''(s)-(M_X'(0))^2=\sigma^2+\mu^2-\mu^2=\sigma^2
+ \end{gather*}
+ 
+ \subsection*{8.}
+ X: Cauchy distribution: $f_X(t)=\frac{1}{\pi}\frac{\lambda}{\lambda^2+t^2}$
+ 
+ \textbf{1. case: $t>0$}
+ 
+ $Y=(K-X)^+$
+ 
+ The second equality holds, because $t>0$.
+
+ \begin{gather*}
+     \mathds{P}(Y\le t)=\mathds{P}((K-X)^+\le t)=\pr{K-X\le t}=\mathds{P}(-X\le t-K)= 1- \mathds{P}(X\le t-K
+     ) = 1- \int_{-\infty}^{t-K} f_X(y) dy =\\ 
+     =\frac{1}{2} - \frac{1}{\pi} \arctan\left(\frac{t-K}{\lambda}\right) 
+ \end{gather*}
+ 
+ $Z=(X-K)^+$
+ 
+ Similarly: 
+ \begin{gather*}
+     \mathds{P}(Z\le t)=\mathds{P}(X \le t+K) =\frac{1}{2} + \frac{1}{\pi} \arctan\left(\frac{t+K}{\lambda}\right) 
+ \end{gather*}
+ 
+  \textbf{2. case: $t<0$}
+  
+  In this case the value of the distribution function is zero, because the image of both $Y$ and $Z$ are non-negativ. 
+  
+  \textbf{3. case: $t=0$}
+  $$\pr{Y=0}=\pr{X\ge K}=1-\pr{X<K}= 1- \int_{-\infty}^{K} f_X(y) dy =\frac{1}{2} - \frac{1}{\pi} \arctan\left(\frac{K}{\lambda}\right)$$
+  
+  $$\pr{Z=0}=\pr{X\le K}= \frac{1}{2} + \frac{1}{\pi} \arctan\left(\frac{K}{\lambda}\right)$$
+  
+  
+  
+ 
+ \newpage
+\subsection*{9.}
+The plots of the returns on S\&P 500:
+\begin{center}
+\includegraphics{plot_r_one.png}
+\end{center}
+\begin{center}
+\includegraphics{plot_r_log.png}  
+\end{center}
