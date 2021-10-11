@@ -1,0 +1,166 @@
+\subsection*{1.}
+\begin{gather*}
+    Cov(AX, BY)=E[AX(BY)^{T}]-E[AX]E[(BY)^{T}]=E[AXY^{T}B^{T}]-E[AX]E[Y^{T}B^{T}]=\\
+    =AE[XY^{T}]B^{T}-AE[X]E[Y^{T}]B^{T}=A(E[XY^{T}]-E[X]E[Y^{T}])B^{T}=ACov(X,Y)B^{T}
+\end{gather*}
+
+\subsection*{2.}
+\begin{itemize}
+    \item Proof that $Var[X|Y] = \Sigma_{X} - \Sigma^{XY}\Sigma_{Y}^{-1}(\Sigma^{XY})^{T}.$\\
+    We will begin the proof by showing the hint, the fact that:
+    \begin{gather*}
+        Var[X|Y] = Cov[(X-E[X|Y]),(X-E[X|Y])]
+    \end{gather*}
+    On one hand,
+    \begin{gather*}
+        Var[X|Y]=E[(X-E[X|Y])^2|Y]=E[(X-E[X|Y])^2]
+    \end{gather*}
+    To prove the last equality above we have used that $X-E[X|Y]$ is independent of $Y$, which derives from the fact that
+    \begin{gather*}
+        Cov(X-E[X|Y],Y)=Cov(X,Y)-Cov(E[X|Y],Y)=\Sigma^{XY} - Cov(\mu^{X}+\Sigma^{XY}(\Sigma^{Y})^{-1}(Y-\mu^{Y}),Y)=\\
+        =\Sigma^{XY}-(\Sigma^{XY}(\Sigma^{Y})^{-1})Cov(Y,Y)=\Sigma^{XY}-(\Sigma^{XY}(\Sigma^{Y})^{-1})\Sigma^{Y}=\Sigma^{XY}-\Sigma^{XY}=0
+    \end{gather*}
+    And since we are dealing with gaussians, this implies independence.\\
+    On the other hand,
+    \begin{gather*}
+        Cov[(X-E[X|Y]),(X-E[X|Y])]=Var[X-E[X|Y]]=E[(X-E[X|Y]-E[X-E[X|Y]])^2]=E[(X-E[X|Y])^2]
+    \end{gather*}
+    Where we have used that $E[X-E[X|Y]]=E[X]-E[E[X|Y]]=E[X]-E[X]=0$\\
+    And therefore we can conclude that $Var[X|Y] = Cov[(X-E[X|Y]),(X-E[X|Y])]$.\\
+    \newline
+    Moving on to the main proof:
+    \begin{gather*}
+        Var[X|Y] = Cov[(X-E[X|Y]),(X-E[X|Y])]=Cov(X,X)-2Cov(X,E[X|Y])+Cov(E[X|Y],E[X|Y])=\\
+        =\Sigma_{X}-2Cov(X,\mu^{X}+\Sigma^{XY}(\Sigma^{Y})^{-1}(Y-\mu^{Y}))+Cov(\mu^{X}+\Sigma^{XY}(\Sigma^{Y})^{-1}(Y-\mu^{Y}),\mu^{X}+\Sigma^{XY}(\Sigma^{Y})^{-1}(Y-\mu^{Y}))=\\
+        =\Sigma_{X}-2Cov(X,\Sigma^{XY}(\Sigma^{Y})^{-1}(Y-\mu^{Y}))+Cov(\Sigma^{XY}(\Sigma^{Y})^{-1}(Y-\mu^{Y}),\Sigma^{XY}(\Sigma^{Y})^{-1}(Y-\mu^{Y}))=\\
+        =\Sigma_{X}-2Cov(X,Y)(\Sigma^{XY}(\Sigma^{Y})^{-1})^{T}+(\Sigma^{XY}(\Sigma^{Y})^{-1})Cov(Y,Y)(\Sigma^{XY}(\Sigma^{Y})^{-1})^{T}=\\
+        =\Sigma_{X}-2\Sigma^{XY}((\Sigma^{Y})^{-1})^{T}(\Sigma^{XY})^{T}+(\Sigma^{XY}(\Sigma^{Y})^{-1})\Sigma^{Y}(\Sigma^{XY}(\Sigma^{Y})^{-1})^{T}=\\
+        =\Sigma_{X}-2\Sigma^{XY}(\Sigma_{Y}^{-1})^{T}(\Sigma^{XY})^{T}+\Sigma^{XY}(\Sigma_{Y}^{-1})^{T}(\Sigma^{XY})^{T}=\Sigma_{X}-\Sigma^{XY}(\Sigma_{Y}^{-1})^{T}(\Sigma^{XY})^{T}=\\
+        =\Sigma_{X}-\Sigma^{XY}\Sigma_{Y}^{-1}(\Sigma^{XY})^{T}
+    \end{gather*}
+    Where we have used that $(\Sigma_{Y}^{-1})^{T}=\Sigma_{Y}^{-1}$ due to the symmetry of the covariance.
+    \newpage 
+    \item
+    \begin{gather*}
+        E[X|Y]= \mu^{X}+\Sigma^{XY}(\Sigma^{Y})^{-1}(Y-\mu^{Y})=1+\begin{pmatrix} 0.5 & 0.5 \end{pmatrix}\begin{pmatrix} 1 & 0\\0 & 1 \end{pmatrix}(\begin{pmatrix} 10\\20 \end{pmatrix}-\begin{pmatrix} 2 \\ 3\end{pmatrix})=\\
+        =1+\begin{pmatrix} 0.5 & 0.5 \end{pmatrix}\begin{pmatrix} 8 \\ 17 \end{pmatrix}=1+4+8.5=13.5
+    \end{gather*}
+    \begin{gather*}
+        Var[X|Y] = \Sigma_{X} - \Sigma^{XY}\Sigma_{Y}^{-1}(\Sigma^{XY})^{T}=1-\begin{pmatrix} 0.5 & 0.5 \end{pmatrix}\begin{pmatrix} 1 & 0\\0 & 1 \end{pmatrix}\begin{pmatrix} 0.5 \\0.5 \end{pmatrix}=1-(\frac{1}{4}+\frac{1}{4})=0.5
+    \end{gather*}
+    Therefore $X|Y \sim N(\frac{27}{2}, \frac{1}{2})$.
+\end{itemize}
+
+
+
+\subsection*{3.}
+The left-hand side of the identity is
+\begin{gather*}
+    \alpha^T x -\frac{1}{2}(x-\mu)^T \Sigma^{-1}(x-\mu) = \alpha^T x - \frac{1}{2}(x-\mu)^T(\Sigma^{-1}x-\Sigma^{-1}\mu)= \alpha^T x - \frac{1}{2}(x^T\Sigma^{-1}x-x^T\Sigma^{-1}\mu-\mu^T\Sigma^{-1}x+\mu^T\Sigma^{-1}\mu)
+\end{gather*}
+and the right-hand side equals to
+\begin{gather*}
+    -\frac{1}{2}(x-(\mu+\Sigma\alpha))^T\Sigma^{-1}(x-(\mu+\Sigma\alpha))+\mu^T\alpha+\frac{1}{2}\alpha^T\Sigma \alpha = \\ -\frac{1}{2}(x-(\mu+\Sigma\alpha))^T(\Sigma^{-1}x-(\Sigma^{-1}\mu+\Sigma^{-1}\Sigma\alpha))+\mu^T\alpha+\frac{1}{2}\alpha^T\Sigma \alpha = \\
+    -\frac{1}{2}(x^T\Sigma^{-1}x-x^T\Sigma^{-1}\mu-\textcolor{red}{x^T\alpha}-\mu^T\Sigma^{-1}x+\mu^T\Sigma^{-1}\mu+\textcolor{green}{\mu^T\alpha}-\textcolor{red}{(\Sigma\alpha)^T \Sigma^{-1}x}+\textcolor{green}{(\Sigma\alpha)^T\Sigma^{-1}\mu}+\textcolor{blue}{\alpha^T\Sigma\alpha)}+\textcolor{green}{\mu^T\alpha}+
+    \textcolor{blue}{\frac{1}{2}\alpha^T\Sigma \alpha} = \\
+    \alpha^T x - \frac{1}{2}(x^T\Sigma^{-1}x-x^T\Sigma^{-1}\mu-\mu^T\Sigma^{-1}x+\mu^T\Sigma^{-1}\mu)
+\end{gather*}
+Using this identity we can calculate the moment generating function.
+\begin{gather*}
+    M_X(\alpha)=\E{\exp(\langle \alpha, X\rangle)}=\int_{\R^n} \exp(\sum_i \alpha_i X_i) \frac{1}{(2\pi)^{n/2}\text{det}(\Sigma)^{1/2}} \exp(-\frac{1}{2}(x-\mu)^T\Sigma^{-1}(x-\mu))\dx= \\ \int_{\R^n} \frac{1}{(2\pi)^{n/2}\text{det}(\Sigma)^{1/2}} \exp(\sum_i \alpha_i X_i-\frac{1}{2}(x-\mu)^T\Sigma^{-1}(x-\mu))\dx =\\
+    \int_{\R^n} \frac{1}{(2\pi)^{n/2}\text{det}(\Sigma)^{1/2}}\exp((x-(\mu+\Sigma\alpha))^T\Sigma^{-1}(x-(\mu+\Sigma\alpha))\exp(\sum_i \alpha_i \mu_i+\frac{1}{2}\alpha^T\Sigma\alpha)\dx= \exp(\sum_i \alpha_i \mu_i+\frac{1}{2}\alpha^T\Sigma\alpha)
+\end{gather*}
+In the last step we used the fact that the integrand is a gaussian density with mean $\mu+(\Sigma\alpha)$ and covariance matrix $\Sigma$, so the integral is $1$.
+
+Now we can differentiate $M_X$ to get the moments
+\begin{gather*}
+    \E{X}=\frac{\partial M_X(\alpha)}{\partial \alpha}\bigg \lvert_{\alpha=0} = \exp( \alpha^T\mu +\frac{1}{2}\alpha^T\Sigma\alpha)(\mu+\frac{\alpha}{2}(\Sigma+\Sigma^T))\bigg\lvert_{\alpha=0}=\mu
+\end{gather*}
+\begin{gather*}
+    \mathbb{E}(XX^T)=\frac{\partial^2M_X(\alpha)}{\partial\alpha^2}\bigg\lvert_{\alpha=0} = \exp( \alpha^T\mu +\frac{1}{2}\alpha^T\Sigma\alpha) \frac{\partial}{\partial \alpha}(\mu+\frac{\alpha}{2}(\Sigma+\Sigma^T) + \frac{\partial}{\partial\alpha}\exp( \alpha^T\mu +\frac{1}{2}\alpha^T\Sigma\alpha) (\mu+\frac{\alpha}{2}(\Sigma+\Sigma^T))\bigg \lvert_{\alpha=0}  =\\
+    \exp( \alpha^T\mu +\frac{1}{2}\alpha^T\Sigma\alpha) \Sigma + \exp( \alpha^T\mu +\frac{1}{2}\alpha^T\Sigma\alpha)(\mu+\frac{\alpha}{2}(\Sigma+\Sigma^T))^2\bigg \lvert_{\alpha=0} = \sigma + \mu^2 \\
+    Var(X) = \E{XX^T}-(\E{X})^2= \Sigma+\mu^2-\mu^2=\Sigma
+\end{gather*}
+
+\subsection*{4.} Since $X_2$ is $\sigma(X_2)$-mesurable and $X_1$ is independent of $X_2$
+\begin{gather*}
+    \cE{\max(X_1,X_2)}{X_2} = \E{\max(X_1,x_2)}\bigg\lvert_{x_2=X_2} = \int_{0}^{1} \max(x_1, x_2)2x_1 dx_1 \bigg\lvert_{x_2=X_2}= \\
+    \left[x_2 \int_0^{x_2} 2x_1 dx_1 + \int_{x_2}^1 2x_1^2 dx_1 \right]\bigg\lvert_{x_2=X_2} = \left[ x_2 \cdot x_1^2 \bigg   \lvert_{x_1=0}^{x_2} + \frac{2}{3}x_1^3  \bigg \lvert_{x_1=x_2}^1  \right]  \bigg\lvert_{x_2=X_2} = \\ x_2^3+\frac{2}{3}(1-x_2^3)\bigg\lvert_{x_2=X_2} = X_2^2 + \frac{2}{3}(1-X_2^3)
+\end{gather*}
+\begin{gather*}
+    \cE{\min(X_1,X_2)}{X_2} = \E{\min(X_1,x_2)}\bigg\lvert_{x_2=X_2} = \int_0^1 \min(x_1, x_2) 2x_1 dx_1 \bigg\lvert_{x_2=X_2} = 
+    \left [\int_0^{x_2} 2x_1^2 + x_2\int_{x_2}^1 2x_1 dx_1 \right] \bigg\lvert_{x_2=X_2}  = \\
+    \left[ \frac{2}{3}x_2^3\bigg\lvert_{x_1=0}^{x_2}+x_2x_1^2 \bigg\lvert_{x_1=x_2}^{1}\right]\bigg\lvert_{x_2=X_2} = \frac{2}{3}x_2^3+x_2(1-x_2^2)\bigg\lvert_{x_2=X_2} = X_2-\frac{1}{3}X_2^3
+\end{gather*}
+\subsection*{5.}
+
+\textbf{1. part:} Let $X=(R_1,\ldots,R_N)$ 
+\begin{gather*}
+\E{ - \exp\left\{-A(\alpha_0R_f+\sum(\alpha_i R_i))\right\}} = - e^ {-A\alpha_0R_f} \E{e^{-A\sum(\alpha_i R_i))}} =
+- e^ {-A\alpha_0R_f} M_{-AX}(\alpha) = \\
+= - e^ {-A\alpha_0R_f} e^{-\alpha^T A \mu +0.5 \alpha^T A^2 \Sigma \alpha} = - \exp \{-A\alpha_0R_f-\alpha^T A \mu +0.5 \alpha^T A^2 \Sigma \alpha\}
+\end{gather*}
+Since $-AX \sim  N(-A\mu, A^2 \Sigma)$. \\
+The following transforms hold under the budget constraint. 
+\begin{gather*}
+ \max( - \exp \{-A\alpha_0R_f-\alpha^T A \mu +0.5 \alpha^T A^2 \Sigma \alpha\}) = 
+ \min (\exp \{-A\alpha_0R_f-\alpha^T A \mu +0.5 \alpha^T A^2 \Sigma \alpha\}) = \\ =
+ \max (\exp \{A\alpha_0R_f+\alpha^T A \mu -0.5 \alpha^T A^2 \Sigma \alpha\}) = \max \alpha_0R_f+\alpha^T  \mu -0.5 \alpha^T A \Sigma \alpha\
+\end{gather*}
+
+\textbf{2. part:}
+In the first part we saw that it's enough to find the maximum of $\alpha_0R_f+\alpha^T\mu-0.5 \alpha^T \Sigma \alpha$. This function is trivially convex in $\alpha$, so we obtain the maximum by setting the gradient to $0$.
+
+\begin{gather*}
+    0 = \frac{\partial}{\partial\alpha} (1- \langle 1, \alpha \rangle)R_f +\alpha^T \mu -0.5 A \alpha^T \Sigma \alpha =
+    -1 R_f + \mu -0.5 A (\Sigma + \Sigma^T) \alpha =
+    - R_f + \mu - A \Sigma \alpha \\
+    \mu - R_f = A \Sigma \alpha \\
+    A^{-1} \Sigma^{-1} (\mu -R_f) = \alpha 
+\end{gather*}
+
+\subsection*{6.} 
+$\mathcal{F}_t = \sigma(R_1,\ldots,R_t )$
+\begin{gather*}
+\cE{R_{t+1}}{\mathcal{F}_t} = \cE{hx_{t+1}+v_{t+1}}{\mathcal{F}_t} = h \cE{\phi x_t + w_{t+1}}{\mathcal{F}_t} + \cE{v_{t+1}}{\mathcal{F}_t} =
+h \phi \cE{x_t}{\mathcal{F}_t} + \cE{w_{t+1}}{\mathcal{F}_t} + \cE{v_{t+1}}{\mathcal{F}_t} 
+\end{gather*}
+The condition means we know the value of $R_t=r_t$ at time $t$, which is from a normal distribution: $R_t \sim \gauss{N\E{x_t}}{\sigma^2_xh^2}$. These terms are just jointly gaussian conditional expectations, which can be calculated as $\cE{X}{Y}= \mu^{X}+\Sigma^{XY}(\Sigma^{Y})^{-1}(Y-\mu^{Y})$. Substituting we get
+\begin{gather*}
+    \cE{x_t}{\mathcal{F}_t}=\cE{x_t}{R_t}=\E{x_t}+\text{cov}(x_t,R_t)\frac{1}{\sigma_x^2h^2}(R_t-N \E{x_t}) = \E{x_t}+(R_t-N \E{x_t})
+\end{gather*}
+where $\text{cov}(x_t,R_t)=\text{cov}(x_t,hx_t+v_t)=h^2 \text{cov}(x_t,x_t)+\text{cov}(x_t,v_t)=h^2\sigma_x^2$
+\begin{gather*}
+    \cE{v_{t+1}}{\mathcal{F}_t}=\cE{v_{t+1}}{R_t} = 0 + \text{cov}(v_{t+1},R_t) \frac{1}{\sigma_x^2h^2}(R_t-N\E{x_t})=\frac{\sigma_v^2}{\sigma_x^2h^2}(R_t-N\E{x_t})
+\end{gather*}
+where $\text{cov}(v_{t+1},R_t)=\text{cov}(v_{t+1},hx_t+v_t)=h^2 \text{cov}(v_{t+1},x_t)+\text{cov}(v_{t+1},v_{t+1})=\sigma_v^2$
+\begin{gather*}
+    \cE{w_{t+1}}{\mathcal{F}_t}=\cE{w_{t+1}}{R_t} = 0 + \text{cov}(w_{t+1},R_t) \frac{1}{\sigma_x^2h^2}(R_t-N\E{x_t}) = 0
+\end{gather*}
+where $\text{cov}(w_{t+1},R_t)=\text{cov}(w_{t+1},hx_t+v_t)=h^2 \text{cov}(w_{t+1},x_t)+\text{cov}(w_{t+1},v_{t+1})= 0$.
+So putting all the previous results together
+\begin{gather*}
+    \cE{R_{t+1}}{\mathcal{F}_t} = h\phi (\E{x_t} + (R_t-N \E{x_t})) + \frac{\sigma_v^2}{\sigma_x^2h^2}(R_t-N\E{x_t})
+\end{gather*}
+Now we just have to compute the conditional variances
+\begin{gather*}
+ Var(R_{t+1}|\mathcal{F}_t) = Var(hx_{t+1}+v_{t+1}|\mathcal{F}_t)=h^2 Var(x_{t+1}| \mathcal{F}_t)+Var(v_{t+1}|\mathcal{F}_t)= h^2 Var(\phi x_t + w_{t+1}| \mathcal{F}_t)+Var(v_{t+1}|\mathcal{F}_t) = \\ 
+ h^2 \phi^2 Var( x_t| \mathcal{F}_t)+\phi^2 Var(w_{t+1}|\mathcal{F}_t)+Var(v_{t+1}|\mathcal{F}_t)
+\end{gather*}
+\begin{gather*}
+    Var[X|Y] = \Sigma_{X} - \Sigma^{XY}\Sigma_{Y}^{-1}(\Sigma^{XY})^{T}
+\end{gather*}
+\begin{gather*}
+    Var( x_t| \mathcal{F}_t) = \sigma_x^2 - cov^2(x_t, R_t) \frac{1}{h^2 \sigma_x^2}= \sigma_x^2  - cov^2(x_t, hx_t+v_t) \frac{1}{h^2 \sigma_x^2}= \sigma_x^2  - [h^2 \text{cov}(x_t,x_t)+\text{cov}(x_t,v_t)]^2\frac{1}{h^2\sigma_x^2} =  \\ 
+    \sigma_x^2 - \frac{h^4 \sigma_x^4}{h^2 \sigma_x^2}=\sigma_x^2 -h^2\sigma_x^2
+\end{gather*}
+\begin{gather*}
+    Var( w_{t+1}| \mathcal{F}_t)=0
+\end{gather*}
+\begin{gather*}
+    Var( v_{t+1}| \mathcal{F}_t)=\sigma_v^2-\text{cov}^2(v_{t+1},R_t)\frac{1}{h^2\sigma_x^2} = \sigma_v^2 - \frac{\sigma_v^4}{h^2 \sigma_x^2} 
+\end{gather*}
+Putting the results together
+\begin{gather*}
+    Var(R_{t+1}|\mathcal{F}_t) = h^2 \phi^2 (\sigma_x^2-h^2\sigma_x^2)+\sigma_v^2-\frac{\sigma_v^4}{h^2 \sigma_x^2}
+\end{gather*}
