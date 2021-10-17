@@ -34,6 +34,7 @@ for (t in 2:101) {
 
 plot(x, xlab = "t", ylab = "xt", col="red", main = 'values of xt and E[xt|Ft]')
 points(E, col="blue")
+legend("topright", c("E[xt|Ft]", "xt"), lty=1, col=1:2)
 
 r=x-E #xt-E[xt|Ft]
 
