@@ -85,7 +85,7 @@ Now we can differentiate $M_X$ to get the moments
 \subsection*{4.} Since $X_2$ is $\sigma(X_2)$-mesurable and $X_1$ is independent of $X_2$
 \begin{gather*}
     \cE{\max(X_1,X_2)}{X_2} = \E{\max(X_1,x_2)}\bigg\lvert_{x_2=X_2} = \int_{0}^{1} \max(x_1, x_2)2x_1 dx_1 \bigg\lvert_{x_2=X_2}= \\
-    \left[x_2 \int_0^{x_2} 2x_1 dx_1 + \int_{x_2}^1 2x_1^2 dx_1 \right]\bigg\lvert_{x_2=X_2} = \left[ x_2 \cdot x_1^2 \bigg   \lvert_{x_1=0}^{x_2} + \frac{2}{3}x_1^3  \bigg \lvert_{x_1=x_2}^1  \right]  \bigg\lvert_{x_2=X_2} = \\ x_2^3+\frac{2}{3}(1-x_2^3)\bigg\lvert_{x_2=X_2} = X_2^2 + \frac{2}{3}(1-X_2^3)
+    \left[x_2 \int_0^{x_2} 2x_1 dx_1 + \int_{x_2}^1 2x_1^2 dx_1 \right]\bigg\lvert_{x_2=X_2} = \left[ x_2 \cdot x_1^2 \bigg   \lvert_{x_1=0}^{x_2} + \frac{2}{3}x_1^3  \bigg \lvert_{x_1=x_2}^1  \right]  \bigg\lvert_{x_2=X_2} = \\ x_2^3+\frac{2}{3}(1-x_2^3)\bigg\lvert_{x_2=X_2} = X_2^3 + \frac{2}{3}(1-X_2^3)
 \end{gather*}
 \begin{gather*}
     \cE{\min(X_1,X_2)}{X_2} = \E{\min(X_1,x_2)}\bigg\lvert_{x_2=X_2} = \int_0^1 \min(x_1, x_2) 2x_1 dx_1 \bigg\lvert_{x_2=X_2} = 
@@ -119,7 +119,8 @@ In the first part we saw that it's enough to find the maximum of $\alpha_0R_f+\a
     A^{-1} \Sigma^{-1} (\mu -R_f) = \alpha 
 \end{gather*}
 
-\subsection*{6.} 
+\subsection*{6.} \textcolor{blue}{This must be wrong somewhere. I guess we just have to use independece and it is way more easier...} \\
+
 $\mathcal{F}_t = \sigma(R_1,\ldots,R_t )$
 \begin{gather*}
 \cE{R_{t+1}}{\mathcal{F}_t} = \cE{hx_{t+1}+v_{t+1}}{\mathcal{F}_t} = h \cE{\phi x_t + w_{t+1}}{\mathcal{F}_t} + \cE{v_{t+1}}{\mathcal{F}_t} =

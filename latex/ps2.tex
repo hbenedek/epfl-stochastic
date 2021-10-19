@@ -15,7 +15,11 @@ $Z=X^4$ means $X=\pm Z^\frac{1}{4}$
 \end{gather*}
 and hence
 \begin{gather*}
-    p_{Z}(z)=\frac{1}{4}(p_{X}(z^\frac{1}{4})+p_{X}(-z^\frac{1}{4}))z^\frac{-3}{4}
+    p_{Z}(z)=\frac{1}{4}(p_{X}(z^\frac{1}{4})+p_{X}(-z^\frac{1}{4}))z^\frac{-3}{4}=
+\end{gather*}
+Using the symmetry of $N(0,1)$ 
+\begin{gather*}
+    = \frac{z^{\frac{-3}{4}}}{2\sqrt{2\pi}}e^{\frac{-1}{2}z^{\frac{1}{2}}}
 \end{gather*}
 
 \subsection*{3.}
@@ -38,7 +42,7 @@ Our goal is to use the CLT, so we are doing transformations in order to be able 
 
 \begin{gather*}
     \pr{Y>0} = 1- \pr{Y\le 0} = 1- \pr{\frac{Y-n\cdot \mu}{\sqrt{n}\sigma} \le \frac{-n\cdot \mu}{\sqrt{n}\sigma} } = 1- \pr{\frac{Y-361\cdot \frac{-1}{19}}{\sqrt{361}\sqrt{\frac{360}{361}}} \le \frac{-361\cdot \frac{-1}{19}}{\sqrt{361}\sqrt{\frac{360}{361}}} } = \\
-    = 1 - \pr{\frac{Y+19}{19\cdot\sqrt{\frac{360}{361}}}\le \frac{19}{\sqrt{360}}} \approx 1- \Phi\left(\frac{19}{\sqrt{360}}\right)
+    = 1 - \pr{\frac{Y+19}{19\cdot\sqrt{\frac{360}{361}}}\le \frac{19}{\sqrt{360}}} \approx 1- \Phi\left(\frac{19}{\sqrt{360}}\right) = 0.158
 \end{gather*}
 In the previous part we calculated $\mu$, now we just need to calculate $\sigma^2$
 \begin{gather*}
