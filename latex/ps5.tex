@@ -1,5 +1,5 @@
 \subsection*{1.}
-In tatate $x_j$ we can transition into state $x_i$, which will stop our process, or we can transition into some other state $x_k$, where our expected stopping time will increase by $1$, and the remainder is just the moment genersting function starting from $x_k$ to $x_i$.
+In state $x_j$ we can transition into state $x_i$, which will stop our process, or we can transition into some other state $x_k$, where our expected stopping time will increase by $1$, and the remainder is just the moment generating function starting from $x_k$ to $x_i$.
 \begin{gather*}
     F_j (s,x_i)=\cE{s^{T_{x_i}}}{X_0=x_j} = s^1 \cpr{X_1 = x_i}{X_0 = x_j} + \sum_{X_2 \neq x_i} \cE{s^{T_{x_i}+1}}{X_1=x_k} \cpr{X_1=x_k}{X_0=x_i} = \\
     s\cdot  p_{ji} + \sum_{i \neq k} s \cdot \cE{s^{T_{x_i}}}{X_1=x_k} p_{jk} = s \cdot p_{ji} +s  \sum_{i \neq k} F_k(s,x_i) p_{jk}
@@ -11,8 +11,8 @@ We can calculate the MGFs as follows
     F_3(s,x_1) = 0.3 s + 0.3 sF_2(s,x_1) + 0.4 sF_3(s,x_1) \Longrightarrow F_3(s,x_1)= \frac{1+\frac{0.4s}{1-0.6s}}{1-0.4s}0.3s\\
     F_3(s,x_2) = 0.3 s + 0.3s F_1(s,x_2) + 0.4 sF_3(s,x_2) \Longrightarrow F_3(s,x_2)= \frac{1+\frac{0.9s}{1-0.1s}}{1-0.4s}0.3s 
 \end{gather*}
-The calculations of $F_1(s,x_3)$ and $F_2(s,x_3)$ were omitted because starting from $x_1$ or $x_2$ $T_{x_3}$ will be infinity. W can also agree on $F_i(s,x_i)=1$.
-With the MFGs, we can calculate the conditional expectations 
+The calculations of $F_1(s,x_3)$ and $F_2(s,x_3)$ were omitted because starting from $x_1$ or $x_2$ $T_{x_3}$ will be infinity. We can also agree on $F_i(s,x_i)=1$.
+With the MGFs, we can calculate the conditional expectations 
 \begin{gather*}
     \cE{s^{T_{x_i}}}{X_0=x_j}=\sum_n s^{T_{x_i}}\ind{x_i=n}\pr{T_{x_i}=n} = \sum_n s^n \pr{T_{x_i}=n} \\
     \frac{\partial}{\partial s}F_j(s,x_i)\dummy{s=1} = \sum_n n s^{n-1} \pr{T_{x_i}=n}\dummy{s=1} = \sum_n n \pr{T_{x_i}=n}=\cE{T_{x_i}}{X_0=x_j} \\
@@ -22,10 +22,10 @@ We can calculate the derivatives and plug in the results
 \begin{gather*}
     \cE{T_{1}}{X_0=1} = 0 \\
     \cE{T_{1}}{X_0=2} =  \frac{10}{(3s-5)^2}\dummy{s=1}=\frac{10}{4}\\
-    \cE{T_{1}}{X_0=3}  = -\frac{30(11s^2-40s-25)}{(s-10)^2(2s-5)^2}\dummy{s=1}=\frac{20}{9}\\
+    \cE{T_{2}}{X_0=3}  = -\frac{30(11s^2-40s-25)}{(s-10)^2(2s-5)^2}\dummy{s=1}=\frac{20}{9}\\
     \cE{T_{2}}{X_0=1} = \frac{90}{(s-10)^2}\dummy{s=1} =  \frac{90}{81}=\frac{10}{9}\\
     \cE{T_{2}}{X_0=2}  = 0\\
-    \cE{T_{2}}{X_0=3}  = -\frac{15(s^2+10s-25)}{2(2s-5)^2(3s-5)^2}\dummy{s=1}= \frac{35}{12}\\
+    \cE{T_{1}}{X_0=3}  = -\frac{15(s^2+10s-25)}{2(2s-5)^2(3s-5)^2}\dummy{s=1}= \frac{35}{12}\\
     \cE{T_{3}}{X_0=1} = \infty\\
     \cE{T_{3}}{X_0=2} = \infty\\
     \cE{T_{3}}{X_0=3} = 0 \\
@@ -33,41 +33,84 @@ We can calculate the derivatives and plug in the results
 Similarly we have
 \begin{gather*}
     \cE{T_{1}^2}{X_0=1} = 0\\
-    \cE{T_{1}^2}{X_0=2}  = -\frac{60}{(3s-5)^3}\dummy{s=1}-\frac{10}{4}\\
-    \cE{T_{1}^2}{X_0=3} = -\frac{30(30s^3+45s^2-225s+250)}{(2s-5)^3(3s-5)^3}\dummy{s=1} - \frac{20}{9}\\
-    \cE{T_{2}^2}{X_0=1}  = -\frac{180}{(s-10)^3}\dummy{s=1}-\frac{10}{9}\\
+    \cE{T_{1}^2}{X_0=2}  =  -\frac{60}{(3s-5)^3}\dummy{s=1}+\frac{10}{4}= 10\\
+    \cE{T_{1}^2}{X_0=3} = \frac{30(3s^3+45s^2-225s+250)}{(2s-5)^3(3s-5)^3}\dummy{s=1} + \frac{35}{12} = 13.06\\
+    \cE{T_{2}^2}{X_0=1}  = -\frac{180}{(s-10)^3}\dummy{s=1}+\frac{10}{9}=1.36\\
     \cE{T_{2}^2}{X_0=2}  = 0\\ 
-    \cE{T_{2}^2}{X_0=3} =-\frac{60(22s^3-120s^2-150s+1625)}{(s-10)^3(2s-5)^3}\dummy{s=1}- \frac{35}{12}\\
+    \cE{T_{2}^2}{X_0=3} =\frac{60(22s^3-120s^2-150s+1625)}{(s-10)^3(2s-5)^3}\dummy{s=1}+\frac{20}{9}=6.42\\
     \cE{T_{3}^2}{X_0=1} = \infty\\
     \cE{T_{3}^2}{X_0=2} = \infty\\
     \cE{T_{3}^2}{X_0=3}  = 0\\
 \end{gather*}
 
 
-\subsection*{2.}
 \subsection*{3.}
 In this exercise, we want to use the Optional Sampling Theorem. The stopping time here is $\tau = \{t : M_t = 0 \text{ or } M_t =50\}$
-Here the stopping time is almost surely bonded, because we are talking about a simple random walk, which visits all levels surely in finite time. Also, if we denote the amount of money at time $t$ with $M_t$, then $|M_{t+1}- M_t| = 1 $, so bounded. As a result of the theorem $\E{M_\tau} = \E{M_0} = 7$. As for the other question, we can use what we derived before. The following holds, because the stopping the is almost surely finite. $\E{M_\tau} = \pr{M_\tau = 0} \cdot 0+ \pr{M_\tau = 50} \cdot 50 = 7 $, so the probability is $\frac{7}{50}$
+Here the stopping time is almost surely bounded, because we are talking about a simple random walk, which visits all levels surely in finite time, so $\E{\tau} <\infty$. Also, if we denote the amount of money at time $t$ with $M_t$, then $|M_{t+1}- M_t| = 1 $, so exists $c>0: |M_{t+1}- M_t|<c$. As a result of the theorem $\E{M_\tau} = \E{M_0} = 7$. As for the other question, we can use what we derived before. The following holds, because the stopping the is almost surely finite. $\E{M_\tau} = \pr{M_\tau = 0} \cdot 0+ \pr{M_\tau = 50} \cdot 50 = 7 $, so the probability is $\frac{7}{50}$
 \subsection*{4.}
 
-\textcolor{blue}{I think we don't have to use the OST, it is enough that a martingal has a constant expected value, $S(t)$ is a martingal so its expected value will be equal to the expected value of $S(0)$ which is $47$} \\
-Let's consider $N$ a constant stopping time and prove that the Optional Sampling Theorem holds.\\
-First of all, $N$ is finite. Moreover, the price of the contract is bounded since $\lim_{n \to \infty} S(n) = S(N)$ a.s. as $N$ is finite and $S(n)$ is a martingale, so so is the stopped process (see the theorem on slide 131/697).\\
-The above-mentioned facts satisfy the (ii) conditions of the Optional Sampling Theorem (see slide 133/697).\\
-Then,
+%\textcolor{blue}{I think we don't have to use the OST, it is enough that a martingal has a constant expected value, $S(t)$ is a martingal so its expected value will be equal to the expected value of $S(0)$ which is $47$} \\
+It holds for any sigma-algebra $\mathcal{F}$ that
 \begin{gather*}
-    E[S(N)] = S(0) = 47
+    \mathbb{E}[\cE{X}{\mathcal{F}}] = \mathbb{E}(X).
+\end{gather*}
+Note that this does not require that $\mathcal{F}$ and $X$ are independent. Since a martingale satisfies
+\begin{gather*}
+    \cE{M_{n+1}}{\mathcal{F}_{n}}=M_n,
+\end{gather*}
+we get
+\begin{gather*}
+    \mathbb{E}(M_{n+1})=\mathbb{E}[\cE{M_{n+1}}{\mathcal{F}_n}]=\mathbb{E}(M_n)
+\end{gather*}
+for all $n \in \mathbb{N}$. Hence, $\mathbb{E}(M_n)=\mathbb{E}(M_0)$.\\
+In particular, in our case
+\begin{gather*}
+    \mathbb{E}[S(N)]=\mathbb{E}[S(0)]=47
 \end{gather*}
 On the other hand,
 \begin{gather*}
-    E[S(N)] = 100P(S(N)=100)+0P(S(N)=0) = 100P(S(N)=100)
+    \mathbb{E}[S(N)]=100\mathbb{P}(S(N)=100) + 0\mathbb{P}(S(N)=0) = 100\mathbb{P}(S(N)=100)
 \end{gather*}
-So $100P(S(N)=100)=47 \implies \mathbf{P(S(N)=100) = \frac{47}{100}}$
+And so
+\begin{gather*}
+    100\mathbb{P}(S(N)=100) = 47 \implies \mathbf{\mathbb{P}(S(N)=100)=\frac{47}{100}}
+\end{gather*}
+
+%Let's consider $N$ a constant stopping time and prove that the Optional Sampling Theorem holds.\\
+%First of all, $N$ is finite. Moreover, the price of the contract is bounded since $\lim_{n \to \infty} S(n) = S(N)$ a.s. as $N$ is finite and $S(n)$ is a martingale, so so is the stopped process (see the theorem on slide 131/697).\\
+%The above-mentioned facts satisfy the (ii) conditions of the Optional Sampling Theorem (see slide 133/697).\\
+%Then,
+%\begin{gather*}
+ %   E[S(N)] = S(0) = 47
+%\end{gather*}
+%On the other hand,
+%\begin{gather*}
+  %  E[S(N)] = 100P(S(N)=100)+0P(S(N)=0) = 100P(S(N)=100)
+%\end{gather*}
+%So $100P(S(N)=100)=47 \implies \mathbf{P(S(N)=100) = \frac{47}{100}}$
 
 \subsection*{5.}
-In this exercise our stopping time is $T$ and we can also prove that the (ii) conditions of the Optional Sampling Theorem hold, as in the previous exercise.\\
+In this exercise our stopping time is $T$, and we will prove that the (ii) conditions of the Optional Sampling Theorem hold.
 \begin{enumerate}
     \item $T$ is finite.\\
-    In the "worst-case scenario", if the price of the contract does not go above 55 or below 15 $\forall t \in (0,N)$ at time $T=N$ the contract will be worth either 100 or 0, so Pedro will sell it.\\
+    In the "worst-case scenario", if the price of the contract does not go above 55 or below 15 at some $t \in (0,N)$, at time $t=N$ the contract will be worth either 100 or 0, so Pedro will sell it.\\
     Therefore, T is finite, as $T \in (0,N]$.
+    \item $S^{T}(t)$ is bounded.\\
+    $S(t) \in [15,55]$ $\forall t \in (0,T)$\\
+    Moreover, since $S(t)$ is a martingale then so is the stopped process, and as $T$ is finite $\lim_{t \to \infty} S(t) = S(T)$ a.s., which takes finite values.\\
+    In conclusion, $S^{T}(t)$ is bounded.
 \end{enumerate}
+Now that we have proven that we can use the Optional Sampling Theorem, we know that
+\begin{gather*}
+    \mathbf{\mathbb{E}[S(T)]=S(0) = 47}.
+\end{gather*}
+\newpage
+\subsection*{2.}
+As we can see from the plots, you can not make more money than the buy-and-hold strategy. It is due to buying everytime when selling. The $a$ and $b$ parameter is just sets the precisity that how much your wealth from this stock follows the price of it.  
+\begin{center}
+    \includegraphics[width=100mm,scale=1]{images/different_martingale_strat.png}
+\end{center}
+You can see the stock price in the following plot.
+\begin{center}
+    \includegraphics[width=70mm,scale=1]{images/ps5_stock.png}
+\end{center}

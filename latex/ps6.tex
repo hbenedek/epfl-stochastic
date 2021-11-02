@@ -1,0 +1,95 @@
+\subsection*{1.}
+a) First, $W_t-W_0=W_t$ is a normally distributed random variable, let us denote it with $N\sim\gauss{0}{t}$,
+\begin{gather*}
+    \E{X_t^p}= \E{x_0^p \exp{(p\sigma W_t+p\alpha t)}} = x_0^p e^{p\alpha t} \int_{\R} e^{p \sigma t} f_{N}(t)\dt = x_0^p e^{p \alpha t} M_N(p\sigma) = x_0^p e^{p \alpha t} e^{\frac{1}{2}p^2\sigma^2 t^2},
+\end{gather*}
+where $M_N(s)$ is the moment generating function of $N$. \\
+b)
+\begin{gather*}
+    \cE{X_t}{\F{s}} = \cE{x_0 e ^{\alpha t} e^{\sigma(W_t-W_s)+\sigma W_s}}{\F{s}} 
+    = x_0 e^{\alpha t} e^{\sigma W_s} \cE{e^{\sigma (W_t-W_s)}}{\F{s}} \\
+    =x_0 e^{\alpha t} e^{\sigma W_s} \E{e^{\sigma (W_t-W_s)}} 
+    = x_0 e^{\alpha t} e^{\sigma W_s} e^{\frac{1}{2}\sigma^2(t-s)}
+\end{gather*}
+where we used the rules of conditional expectation and the basic properties of Brownian Motion, the fact that the increment $W_t-W_s$ is independet of $\F{s}$ and $W_s$ is $\F{s}$-measurable. Now we can compare this quantity with $X_s$ and choose $\alpha$ and $\sigma$ to get $\cE{X_t}{\F{s}}=X_s$.
+\begin{align*}
+    X_s = x_0 e^{\alpha s}e^{\sigma W_s} &= x_0 e^{\alpha t} e^{\sigma W_s} e^{\frac{1}{2}\sigma^2(t-s)} \\
+    e^{\alpha s} &=e^{\alpha t}  e^{\frac{1}{2}\sigma^2(t-s)} \\
+    e^{\alpha (s-t)} &=e^{\frac{1}{2}\sigma^2(t-s)} \\
+    \alpha &= -\frac{1}{2}\sigma^2
+\end{align*}
+
+
+\subsection*{2.}
+From this point on we will abbreviate $\mathbb{E}(...|\mathcal{F}_t)$ to $\mathbb{E}_t(...)$.\\
+Since $W$ is a Brownian motion, we will also use the following results, derived from the fact that $W_s -W_t$ is independent of $\mathcal{F}_t$ and $W_s -W_t \sim \mathcal{N}(0,s-t)$ $\forall t < s$.
+\begin{itemize}
+    \item $\mathbb{E}_t(W_s-W_t)=\mathbb{E}(W_s-W_t)=0$
+    \item $\mathbb{E}_t((W_s-W_t)^2)=\mathbb{E}((W_s-W_t)^2)=Var(W_s-W_t)+\mathbb{E}(W_s-W_t)^2=Var(W_s-W_t)=s-t$
+\end{itemize}
+Therefore, $\forall t<s$:
+\begin{gather*}
+    \mathbb{E}_t(X_s)=\mathbb{E}_t(W_s^2-s)=\mathbb{E}_t(W_s^2)-s=\mathbb{E}_t((W_t+(W_s-W_t))^2)-s=W_t^2+2W_t\mathbb{E}_t(W_s-W_t)+\mathbb{E}_t((W_s-W_t)^2)-s=\\
+    =W_t^2+s-t-s=W_t^2-t
+\end{gather*}
+So we have just proved that given a W Brownian motion, $X_t=W_t^2-t$, $t \geq 0$ is a martingale.
+\subsection*{3.}
+a) It follows from the fact that $\{\omega: W_t(w) \geq \alpha\} \subset \{\omega: M_t(\omega) \geq \alpha\}$ and $\pr{A} = \pr{A\cap B}$ if $A \subset B$. \\
+b)This follows immediately from the definition of conditional probability. \\
+c) Saying the maximum of $W_t$ is at least $\alpha$ is the same as saying we have reached level $\alpha$ up until time $t$. So $\{\omega: M_t(w) \geq \alpha\}=\{\omega: T_{\alpha}(w)\leq t\}$ are the same event. \\
+d) If we know that $T_{\alpha}\leq t$ then we can consider the Brownian Motion starts from $\alpha$, which is $\tilde{W}_s=W_{s+T_{\alpha}}-\alpha$, this BM has independent gaussian increments, so $\cpr{W_t \geq \alpha}{T_{\alpha}\leq t}=\pr{\tilde{W}_t\geq 0}=\frac{1}{2}$ since $\tilde{W}_t$ is a gaussian variable with $0$ mean and $t+T_{\alpha}$ variance, this variable is symmetric, so the probability being greater than $0$ is $\frac{1}{2}$.
+We can use the above steps to derive
+\begin{gather*}
+    \pr{W_t\geq \alpha} = \pr{(W_t \geq \alpha) \cap (M_t \geq \alpha)} = \cpr{W_t \geq \alpha}{M_t \geq \alpha}\pr{M_t\geq \alpha} = \cpr{W_t \geq \alpha}{T_{\alpha} \leq \alpha}\pr{M_t\geq \alpha} = \\
+    \frac{1}{2}\pr{M_t\geq \alpha}
+\end{gather*}
+Since $W$ is a BM $W_t$ is normally distributed, so to get the probability of $\{W_t\geq \alpha\}$ we just have to integrate the density of a gaussian from $\alpha$ to $\infty$.
+
+\subsection*{4.}
+$T_a=inf\{t,W_t \geq a\}$ denotes the first time the Brownian motion $W_t$ hits the line $y=a$.\\
+Therefore, the probability that the stopping time $T_a$ is less or equal than $t$, i.e.  $\mathbb{P}(T_a \leq t)$, is equivalent to the probability that the Brownian motion hits the line $y=a$ for some time $s \leq t$.\\
+In other words, and using the reflection principle proved in the exercise 3:
+\begin{gather*}
+    \mathbb{P}(T_a \geq t) = \mathbb{P}(max_{0 \leq s \leq t} W_s \geq a) = 2\mathbb{P}(W_t \geq a) = 2\frac{1}{\sqrt{2\pi t}}\int_{a}^{\infty}e^{-x^2/(2t)} dx = 2-2\Phi(\frac{a}{\sqrt{t}})
+\end{gather*}
+Where $\Phi$ denotes the cumulative distribution function (CDF) of the standard normal distribution.\\
+Moreover, differentiating with respect to t and integrating by parts we obtain the density function:
+\begin{gather*}
+    p_{T_a}(t)=\frac{a}{\sqrt{2\pi t^3}}e^{-a^2/2t}dt
+\end{gather*}
+\subsection*{5.}
+\subsection*{(a)}
+We want to prove the following:
+\begin{gather*}
+     \E{\int_0^T\vert \sum_{i=0}^{n-1} H_i 1_{(t_i, t_{i+1}]}(t)\vert^2 dt)} < \infty
+\end{gather*}
+Let $M=\max_i\{M_i\} $, where $M_i=\sup \{H_i\}$
+\begin{gather*}
+    \E{\int_0^T | \sum_{i=0}^{n-1} H_i 1_{(t_i, t_{i+1}]}(t)|^2 dt}\le
+    \E{\int_0^T | M \sum_{i=0}^{n-1} 1_{(t_i, t_{i+1}]}|^2 dt} =\\
+    =\E{ \int_0^T | M \cdot 1_{(0, T]}|^2 dt} =\E{\int_0^T | M |^2 dt} \ \le \E{M^2 T} = M^2 T < \infty
+\end{gather*}
+
+\subsection*{(b)}
+We assume that $g_t \in \mathcal{L}_2$, in this way the existence of such simple processes are provided.
+Choose 
+\begin{gather*}
+    h_t^n := \sum_{i=0}^{n-1} g_t 1_{(t_i, t_{i+1}]}(t).
+\end{gather*}
+Here we want to use Lebesgue's dominated convergence theorem. Let $M$ be the bound of $g$ which exists according to the exercise. 
+\begin{gather*}
+    \vert g_t-h_t^n\vert^2 = \vert g_t-\sum_{i=0}^{n-1} g_t 1_{(t_i, t_{i+1}]}(t)\vert^2 \le |g_t|^2 \le M^2 
+\end{gather*}
+This bound is measurable.
+
+Here we want to use bounded convergence theorem. 
+\begin{gather*}
+    \int_0^T \vert g_t-h_t^n\vert^2 dt \le M^2 T < \infty ~\text{and}~ 
+    \lim_{n\to \infty}\int_0^T \vert g_t-h_t^n\vert^2 dt = \int_0^T \lim_{n\to \infty}\vert g_t-h_t^n\vert^2 dt = 0
+\end{gather*}
+ 
+As a result: 
+\begin{gather*}
+    \lim_{n\to \infty}\E{\int_0^T \vert g_t-h_t^n\vert^2 dt} =  \E{  \lim_{n\to \infty}\int_0^T \vert g_t-h_t^n\vert^2 dt} = \E{  \int_0^T \lim_{n\to \infty} \vert g_t-h_t^n\vert^2 dt} = 0
+\end{gather*}
+
